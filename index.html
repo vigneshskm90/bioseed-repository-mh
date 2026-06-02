@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect with Our Regional Leads</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.3rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: -30px auto 60px auto;
+            padding: 0 20px;
+        }
+
+        /* Search Filter Bar */
+        .search-container {
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 20px;
+            font-size: 1.05rem;
+            border: 2px solid #eef2f5;
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .search-input:focus {
+            border-color: #2c5364;
+        }
+
+        /* Contact Directory Card */
+        .directory-box {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .directory-title {
+            background: #fafbfc;
+            padding: 18px 20px;
+            border-bottom: 2px solid #eef2f5;
+        }
+
+        .directory-title h2 {
+            font-size: 1.3rem;
+            color: #2c5364;
+        }
+
+        .contact-list {
+            background: #ffffff;
+        }
+
+        .contact-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px;
+            border-bottom: 1px solid #eef2f5;
+            transition: background-color 0.15s ease;
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-item:hover {
+            background-color: #fdfdf0; /* Subtle highlight */
+        }
+
+        .contact-info .name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a252f;
+        }
+
+        .contact-info .location {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-top: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        /* Click to Call Button */
+        .call-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: #27ae60;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 3px 6px rgba(39, 174, 96, 0.15);
+        }
+
+        .call-btn:hover {
+            background-color: #219653;
+            transform: translateY(-1px);
+            box-shadow: 0 5px 10px rgba(39, 174, 96, 0.25);
+        }
+
+        .phone-icon {
+            margin-right: 6px;
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        /* No Results Message */
+        .no-results {
+            display: none;
+            padding: 40px;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive Adjustments */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.8rem; }
+            .contact-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            .call-btn {
+                width: 100%;
+                justify-content: center;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Header -->
+    <header class="hero">
+        <h1>BIOSEED On-Field Support Directory</h1>
+        <p>Connect instantly with our regional leads for real-time assistance and product inquiries.</p>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        
+        <!-- Live Search Bar -->
+        <div class="search-container">
+            <input type="text" id="searchBox" class="search-input" placeholder="🔍 Type a location or name to filter immediately...">
+        </div>
+
+        <!-- Directory List Box -->
+        <div class="directory-box">
+            <div class="directory-title">
+                <h2>Regional Contact Directory</h2>
+            </div>
+
+            <div class="contact-list" id="directoryList">
+                
+                <!-- SVG Icon Template Definition -->
+                <script>
+                    const phoneSvg = `<svg class="phone-icon" viewBox="0 0 24 24"><path d="M20 15.5c-1.2 0-2.4-.2-3.6-.6-.3-.1-.7 0-1 .2l-2.2 2.2c-2.8-1.4-5.1-3.8-6.6-6.6l2.2-2.2c.3-.3.4-.7.2-1-.3-1.1-.5-2.3-.5-3.5 0-.6-.4-1-1-1H4c-.6 0-1 .4-1 1 0 9.4 7.6 17 17 17 .6 0 1-.4 1-1v-3.5c0-.6-.4-1-1-1z"/></svg>`;
+                </script>
+
+                <!-- 1. Aurangabad -->
+                <div class="contact-item">
+                    <div class="contact-info">
+                        <div class="name">Kishor Pable</div>
+                        <div class="location">📍 Aurangabad</div>
+                    </div>
+                    <a href="tel:+919823268897" class="call-btn"><script>document.write(phoneSvg);</script>Call Now</a>
+                </div>
+
+                <!-- 2. Vaijapur -->
+                <div class="contact-item">
+                    <div class="contact-info">
+                        <div class="name">Badwar Shubham Arun</div>
+                        <div class="location">📍 Vaijapur</div>
+                    </div>
+                    <a href="tel:+918983331182" class="call-btn"><script>document.write(phoneSvg);</script>Call Now</a>
+                </div>
+
+                <!-- 3. Shrirampur -->
+                <div class="contact-item">
+                    <div class="contact-info">
+                        <div class="name">Kunal Valmik Navale</div>
+                        <div class="location">📍 Shrirampur</div>
+                    </div>
+                    <a href="tel:+919359695441" class="call-btn"><script>document.write(phoneSvg);</script>Call Now</a>
+                </div>
+
+                <!-- 4. Shevgaon -->
+                <div class="contact-item">
+                    <div class="contact-info">
+                        <div class="name">Shailendra Singh Bhadoria</div>
+                        <div class="location">📍 Shevgaon</div>
+                    </div>
+                    <a href="tel:+917974925010" class="call-btn"><script>document.write(phoneSvg);</script>Call Now</a>
+                </div>
+
+                <!-- 5. Yavatmal -->
+                <div class="contact-item">
+                    <div class="contact-info">
+                        <div class="name">Shailesh Ramrao Kambale</div>
+                        <div class="location">📍 Yavatmal</div>
+                    </div>
+                    <a href="tel:+917666887330" class="call-btn"><script>document.write(phoneSvg);</script>Call Now</a>
+                </div>
+
+                <!-- 6. Pusad -->
+                <div class="contact-item">
+                    <div class="contact-info">
+                        <div class="name">Kartik Shankarrao Mamidwar</div>
+                        <div class="location">📍 Pusad</div>
+                    </div>
+                    <a href="tel:+919923934206" class="call-btn"><script>document.write(phoneSvg);</script>Call Now</a>
+                </div>
+
+                <!-- 7. Akola -->
+                <div class="contact-item">
+                    <div class="contact-info">
+                        <div class="name">Chetan Ashokrao Deshmukh</div>
+                        <div class="location">📍 Akola</div>
+                    </div>
+                    <a href="tel:+919730170442" class="call-btn"><script>document.write(phoneSvg);</script>Call Now</a>
+                </div>
+
+                <!-- 8. Amravati -->
+                <div class="contact-item">
+                    <div class="contact-info">
+                        <div class="name">Samir Gajanan Dhage</div>
+                        <div class="location">📍 Amravati</div>
+                    </div>
+                    <a href="tel:+917770067577" class="call-btn"><script>document.write(phoneSvg);</script>Call Now</a>
+                </div>
+
+                <!-- 9. Parbhani -->
+                <div class="contact-item">
+                    <div class="contact-info">
+                        <div class="name">Madhav Machindranath Surya</div>
+                        <div class="location">📍 Parbhani</div>
+                    </div>
+                    <a href="tel:+919011311795" class="call-btn"><script>document.write(phoneSvg);</script>Call Now</a>
+                </div>
+
+                <!-- 10. Jalna -->
+                <div class="contact-item">
+                    <div class="contact-info">
+                        <div class="name">Sadashiv Pandharinath Waje</div>
+                        <div class="location">📍 Jalna</div>
+                    </div>
+                    <a href="tel:+919021076777" class="call-btn"><script>document.write(phoneSvg);</script>Call Now</a>
+                </div>
+
+                <!-- 11. Beed -->
+                <div class="contact-item">
+                    <div class="contact-info">
+                        <div class="name">Ramesh Popat Garkal</div>
+                        <div class="location">📍 Beed</div>
+                    </div>
+                    <a href="tel:+917875259370" class="call-btn"><script>document.write(phoneSvg);</script>Call Now</a>
+                </div>
+
+                <!-- 12. Nanded -->
+                <div class="contact-item">
+                    <div class="contact-info">
+                        <div class="name">Laxman Chavan</div>
+                        <div class="location">📍 Nanded</div>
+                    </div>
+                    <a href="tel:+919527666417" class="call-btn"><script>document.write(phoneSvg);</script>Call Now</a>
+                </div>
+
+                <!-- 13. Raver -->
+                <div class="contact-item">
+                    <div class="contact-info">
+                        <div class="name">Krishna Ashok Ravate</div>
+                        <div class="location">📍 Raver</div>
+                    </div>
+                    <a href="tel:+919689313629" class="call-btn"><script>document.write(phoneSvg);</script>Call Now</a>
+                </div>
+
+                <!-- 14. Jalgaon -->
+                <div class="contact-item">
+                    <div class="contact-info">
+                        <div class="name">Kishor Ravindra Jadhav</div>
+                        <div class="location">📍 Jalgaon</div>
+                    </div>
+                    <a href="tel:+919595860035" class="call-btn"><script>document.write(phoneSvg);</script>Call Now</a>
+                </div>
+
+                <!-- 15. Parola -->
+                <div class="contact-item">
+                    <div class="contact-info">
+                        <div class="name">Pravin Nagre</div>
+                        <div class="location">📍 Parola</div>
+                    </div>
+                    <a href="tel:+918390361802" class="call-btn"><script>document.write(phoneSvg);</script>Call Now</a>
+                </div>
+
+                <!-- 16. Jamner -->
+                <div class="contact-item">
+                    <div class="contact-info">
+                        <div class="name">Pratik Arvind Patil</div>
+                        <div class="location">📍 Jamner</div>
+                    </div>
+                    <a href="tel:+919860302190" class="call-btn"><script>document.write(phoneSvg);</script>Call Now</a>
+                </div>
+
+                <!-- 17. Dhule -->
+                <div class="contact-item">
+                    <div class="contact-info">
+                        <div class="name">Madhukar Krishna Mali</div>
+                        <div class="location">📍 Dhule</div>
+                    </div>
+                    <a href="tel:+919518353749" class="call-btn"><script>document.write(phoneSvg);</script>Call Now</a>
+                </div>
+
+                <!-- 18. Malkapur -->
+                <div class="contact-item">
+                    <div class="contact-info">
+                        <div class="name">Prashant Patil</div>
+                        <div class="location">📍 Malkapur</div>
+                    </div>
+                    <a href="tel:+918983780377" class="call-btn"><script>document.write(phoneSvg);</script>Call Now</a>
+                </div>
+
+                <!-- 19. Wardha -->
+                <div class="contact-item">
+                    <div class="contact-info">
+                        <div class="name">Krushnagopal Haribhau Raut</div>
+                        <div class="location">📍 Wardha</div>
+                    </div>
+                    <a href="tel:+919423643581" class="call-btn"><script>document.write(phoneSvg);</script>Call Now</a>
+                </div>
+
+                <!-- 20. Nagpur -->
+                <div class="contact-item">
+                    <div class="contact-info">
+                        <div class="name">Krunal Dnyaneshwar Atkare</div>
+                        <div class="location">📍 Nagpur</div>
+                    </div>
+                    <a href="tel:+918554862013" class="call-btn"><script>document.write(phoneSvg);</script>Call Now</a>
+                </div>
+
+                <!-- 21. Chandarpur -->
+                <div class="contact-item">
+                    <div class="contact-info">
+                        <div class="name">Yogesh Ambedare</div>
+                        <div class="location">📍 Chandarpur</div>
+                    </div>
+                    <a href="tel:+918830426759" class="call-btn"><script>document.write(phoneSvg);</script>Call Now</a>
+                </div>
+
+                <!-- 22. Bhandara -->
+                <div class="contact-item">
+                    <div class="contact-info">
+                        <div class="name">Ankit Umashankar Agase</div>
+                        <div class="location">📍 Bhandara</div>
+                    </div>
+                    <a href="tel:+918805726163" class="call-btn"><script>document.write(phoneSvg);</script>Call Now</a>
+                </div>
+
+                <!-- 23. Phulambari -->
+                <div class="contact-item">
+                    <div class="contact-info">
+                        <div class="name">Shubham Karbhai Madgul</div>
+                        <div class="location">📍 Phulambari</div>
+                    </div>
+                    <a href="tel:+919529207246" class="call-btn"><script>document.write(phoneSvg);</script>Call Now</a>
+                </div>
+
+                <!-- 24. Sillod -->
+                <div class="contact-item">
+                    <div class="contact-info">
+                        <div class="name">Ganesh Baburao Gavhane</div>
+                        <div class="location">📍 Sillod</div>
+                    </div>
+                    <a href="tel:+917498624775" class="call-btn"><script>document.write(phoneSvg);</script>Call Now</a>
+                </div>
+
+                <!-- 25. Bokhardan -->
+                <div class="contact-item">
+                    <div class="contact-info">
+                        <div class="name">Swapnil Patil</div>
+                        <div class="location">📍 Bokhardan</div>
+                    </div>
+                    <a href="tel:+919404192667" class="call-btn"><script>document.write(phoneSvg);</script>Call Now</a>
+                </div>
+
+            </div>
+            
+            <!-- No Results Message fallback -->
+            <div id="noResults" class="no-results">
+                No territories or leads match your search criteria.
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Support Directory Dashboard. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Live Instant Filtering -->
+    <script>
+        document.getElementById('searchBox').addEventListener('input', function(e) {
+            const filterText = e.target.value.toLowerCase().trim();
+            const contactItems = document.querySelectorAll('.contact-item');
+            const noResultsElement = document.getElementById('noResults');
+            let hasVisibleMatches = false;
+
+            contactItems.forEach(function(item) {
+                const name = item.querySelector('.name').textContent.toLowerCase();
+                const location = item.querySelector('.location').textContent.toLowerCase();
+                
+                if (name.includes(filterText) || location.includes(filterText)) {
+                    item.style.display = 'flex';
+                    hasVisibleMatches = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Toggle "No matches found" message
+            if (hasVisibleMatches) {
+                noResultsElement.style.display = 'none';
+            } else {
+                noResultsElement.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
